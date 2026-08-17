@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Profile {
+  id             Int    @id @default(autoincrement())
+  nama           String
+  tagline        String
+  bio            String
+  foto_url       String?
+  email          String
+  link_github    String?
+  link_linkedin  String?
+  link_instagram String?
+}
+
+model Project {
+  id         Int      @id @default(autoincrement())
+  judul      String
+  deskripsi  String
+  tech_stack String[]
+  gambar_url String?
+  link_demo  String?
+  link_repo  String?
+  urutan     Int      @default(0)
+  created_at DateTime @default(now())
+}
+
+model Skill {
+  id         Int      @id @default(autoincrement())
+  nama       String
+  kategori   String
+  level      Int
+  icon       String?
+  created_at DateTime @default(now())
+}
+
+model Experience {
+  id             Int      @id @default(autoincrement())
+  posisi         String
+  institusi      String
+  tanggal_mulai  DateTime
+  tanggal_selesai DateTime?
+  deskripsi      String
+  created_at     DateTime @default(now())
+}
